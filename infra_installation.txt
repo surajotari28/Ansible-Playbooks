@@ -1,0 +1,26 @@
+Create User To Install Ansible & Terraform
+	- sudo useradd ansible
+	- echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
+	- sudo su ansible
+
+Install Terraform
+	- sudo su ansible
+	- sudo yum install wget unzip -y
+	- wget https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip
+	- sudo unzipterraform_0.12.26_linux_amd64.zip -d /usr/local/bin/
+	- export PATH=$PATH:/usr/local/bin
+	- vi .bashrc
+		export PATH="$PATH:/usr/local/bin"
+	- source ~/.bashrc
+
+Ansible Installation
+	- sudo su ansible
+	- sudo yum install python3 -y
+	- sudo alternatives --set python /usr/bin/python3
+	- sudo yum -y install python3-pip -y
+	- pip3 install ansible --user
+	- pip3 install boto3 --user
+
+Clone teraform and ansible scripts
+	- git clone https://github.com/MithunTechnologiesDevops/Kuberentes_Cluster_Terraform_Ansible.git
+	- cd Kuberentes_Cluster_Terraform_Ansible
