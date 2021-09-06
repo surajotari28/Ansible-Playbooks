@@ -24,3 +24,26 @@ Ansible Installation
 Clone teraform and ansible scripts
 	- git clone https://github.com/MithunTechnologiesDevops/Kuberentes_Cluster_Terraform_Ansible.git
 	- cd Kuberentes_Cluster_Terraform_Ansible
+
+Create Infrastructure(VPC, Subnets, Route Table, EC2 Instance) As A Code Using Terraform Scripts
+	- terraform init terafrom_scripts/
+	- terraform validate terafrom_scripts/
+	- terraform plan terafrom_scripts/
+	- terraform apply --auto-approve terafrom_scripts/
+
+Configuration Management
+check if DynamicInventory Script works
+	- chmod +x DynamicInventory.py
+	./DynamicInventory.py --list
+
+Kuberentes Cluster Setup Using Ansible (Configuration Management) With DynamicInventory.
+ note: create pem file and copy aws private key (pem) file content which you used in terraform
+
+ - vi devops.pem
+ chmod 400 devops.pem
+
+ ansible-playbook -i DynamicInventory.py site.yml -u ubuntu --private-key=<PemFilePath> --ssh-common-args "-o StrictHostKeyChecking=no"
+
+ Destroy Infrastructure
+
+ terraform destroy --auto-approve terafrom_scripts/
